@@ -12,8 +12,8 @@ function dispatch($uri) {
     global $routes;
     if(array_key_exists($uri, $routes)) {
         $callback = $routes[$uri];
-        echo call_user_func($callback);
+        call_user_func($callback);
     } else {
-        echo get404(); 
+        get404(); 
     }
 }

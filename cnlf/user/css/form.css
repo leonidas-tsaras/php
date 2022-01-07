@@ -1,0 +1,58 @@
+div.cnf-form-wrapper, 
+div.cnf-form-wrapper * {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    text-decoration: none;
+}
+div.cnf-form-wrapper {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    padding: 0.5rem;
+    border: solid thin lightgray;
+}
+div.cnf-form-wrapper > h2 {
+    font-size: 1.3rem;
+}
+div.cnf-form-wrapper > form {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+}
+div.cnf-form-wrapper > form > input {
+    padding: 0.5rem;
+    border: solid thin lightgray;
+    font-size: 1rem;
+}
+div.cnf-form-wrapper > form > input:first-child {
+    width: 75%;
+}
+div.cnf-form-wrapper > form > input:last-child {
+    width: 25%;
+}
+div.cnf-form-wrapper p.error,
+div.cnf-form-wrapper p.success {
+    font-weight: bold;
+    color: red;
+    border: solid thin red;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+}
+div.cnf-form-wrapper p.success {
+    color: green;
+    border: solid thin green;
+}
+
+@media screen and (max-width: 500px) {
+    div.cnf-form-wrapper > form {
+        flex-direction: column;
+    }
+    div.cnf-form-wrapper > form > input:first-child {
+        width: 100%;
+    }
+    div.cnf-form-wrapper > form > input:last-child {
+        width: 100%;
+    }
+}

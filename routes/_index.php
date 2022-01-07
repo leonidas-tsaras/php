@@ -3,6 +3,19 @@
 $root = "/github/php/routes/";
 $views = "views/";
 
+require_once "router.php";
+
+route('', function () {
+    view("home");
+});
+
+route('about', function () {
+    view("about");
+});
+
+route('contact', function () {
+    view("contact");
+});
 
 function view($file = "home") {
     global $views;
@@ -23,13 +36,4 @@ $uri = filter_var($uri, FILTER_SANITIZE_URL);
 $uri = str_replace($root, "", $uri);
 $uri = trim($uri, "/");
 $uri = urldecode($uri);
-
-//echo $uri;
-$file  = $views . $uri . ".php";
-
-if(is_file($file)) {
-    view($uri);
-} else {
-    get404();
-}
-//dispatch($uri);
+dispatch($uri);
