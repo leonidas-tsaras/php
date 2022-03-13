@@ -11,7 +11,11 @@
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Update URI:        https://tutor.edu.gr/plugins/cool-class-form
+<<<<<<< HEAD
  * Text Domain:       ccf-domain
+=======
+ * Text Domain:       cooll-contact-form
+>>>>>>> 5458f02c131c590c2e53a30f7874cd7aca189e2c
  * Domain Path:       /languages
  */
 
@@ -19,6 +23,7 @@ if(!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
+<<<<<<< HEAD
 // register autoloading
 spl_autoload_register(function ($class_name) {
     $root = dirname(__FILE__);
@@ -60,3 +65,13 @@ if(is_admin()) {
 } else {
     new ContactForm();
 }
+=======
+include('admin/AdminForm.class.php');
+include('admin/AdminMenu.class.php');
+include('public/ContactForm.class.php');
+include('App.class.php');
+
+new App();
+
+
+>>>>>>> 5458f02c131c590c2e53a30f7874cd7aca189e2c

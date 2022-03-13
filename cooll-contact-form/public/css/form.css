@@ -10,7 +10,11 @@ div.contact-form-wrapper * {
 div.contact-form-wrapper {
     width: 100%;
     max-width: 700px;
+<<<<<<< HEAD
     margin: 2rem auto;
+=======
+    margin: auto;
+>>>>>>> 5458f02c131c590c2e53a30f7874cd7aca189e2c
     padding: 1rem;
     border: solid thin lightgray;
 }
@@ -29,7 +33,11 @@ div.contact-form-wrapper > form > section > p {
 div.contact-form-wrapper > form > section > p > input,
 div.contact-form-wrapper > form > section > p > textarea {
     width: 100%;
+<<<<<<< HEAD
     padding: 0.5rem;
+=======
+    padding: 1rem;
+>>>>>>> 5458f02c131c590c2e53a30f7874cd7aca189e2c
     border: solid thin lightgray;
     font-size: 1rem;
 }
