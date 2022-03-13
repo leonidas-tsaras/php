@@ -5,7 +5,7 @@ class User {
         register_activation_hook(__FILE__, array($this, 'activate'));
         register_deactivation_hook(__FILE__, array($this, 'deactivate'));
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
-        add_shortcode(App::SHORTCODE, array($this, 'addshortcode'));
+        add_shortcode(CNLF::SHORTCODE, array($this, 'addshortcode'));
     }
 
     function activate() {
@@ -33,7 +33,7 @@ class User {
             }
 
             // check nonce
-            if ( ! isset( $_POST[App::NONCE_FIELD_NAME] ) || ! wp_verify_nonce($_POST[App::NONCE_FIELD_NAME], App::NONCE_ACTION)) {
+            if ( ! isset( $_POST[CNLF::NONCE_FIELD_NAME] ) || ! wp_verify_nonce($_POST[CNLF::NONCE_FIELD_NAME], CNLF::NONCE_ACTION)) {
                 $error = 'Sorry, your nonce did not verify.';
             }
         }

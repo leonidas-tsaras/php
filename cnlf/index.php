@@ -18,24 +18,18 @@
 // Exit if accessed directly
 if (!defined('ABSPATH')) exit;
 
-// register autoloading
-spl_autoload_register(function ($class_name) {
+if (!class_exists('CNLF_Autoloader') ) {
     $root = dirname(__FILE__);
-    $dirs = ["admin", "user"];
-    foreach($dirs as $dir) {
-        $file = $root . '/' . $dir . '/' . $class_name . '.class.php';
-        if(file_exists($file)) {
-            require_once($file);
-            return;
-        }
-    }
-});
+    include_once "$root/autoloader.class.php";
+}
 
 // create App class to store app variables
-class App {
-    const SHORTCODE = 'cool-newsletter-form'; // holds shortcode name
-    const NONCE_ACTION = 'cnlf_action';
-    const NONCE_FIELD_NAME = 'cnlf_field_name';
+if (!class_exists('App') ) {
+    class CNLF {
+        const SHORTCODE = 'cool-newsletter-form'; // holds shortcode name
+        const NONCE_ACTION = 'cnlf_action';
+        const NONCE_FIELD_NAME = 'cnlf_field_name';
+    }
 }
 
 if(is_admin()) {
@@ -43,4 +37,6 @@ if(is_admin()) {
 } else {
 	new User();
 }
+
+
 

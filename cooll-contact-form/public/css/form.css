@@ -1,0 +1,82 @@
+/* contact-form -------------------------------------- */
+div.contact-form-wrapper, 
+div.contact-form-wrapper * {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    text-decoration: none;
+}
+div.contact-form-wrapper {
+    width: 100%;
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 1rem;
+    border: solid thin lightgray;
+}
+
+div.contact-form-wrapper > form,
+div.contact-form-wrapper > form > section {
+    width: 100%;
+}
+
+div.contact-form-wrapper > form > section > p {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+}
+
+div.contact-form-wrapper > form > section > p > input,
+div.contact-form-wrapper > form > section > p > textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: solid thin lightgray;
+    font-size: 1rem;
+}
+
+div.contact-form-wrapper > form > section.form-submit > p > input {
+    font-size: 1.2rem;
+}
+
+/* div.contact-form-wrapper > form > section > p:last-child {
+    display: flex;
+    gap: 0.5rem;
+}
+
+div.contact-form-wrapper > form > section > p > input:first-child {
+    width: 70%;
+}
+
+div.contact-form-wrapper > form > section.submit > p > input {
+    width: 30%;
+} */
+
+div.contact-form-wrapper p.error {
+    font-weight: bold;
+    color:  red;
+    border: solid thin red;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+}
+div.contact-form-wrapper p.success {
+    font-weight: bold;
+    color: green;
+    border: solid thin green;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+@media screen and (max-width: 700px) {
+    div.contact-form-wrapper > form > p:last-child {
+        flex-direction: column;
+    }
+    div.contact-form-wrapper > form > p > input:first-child {
+        width: 100%;
+    }
+    div.contact-form-wrapper > form > p > input:last-child {
+        width: 100%;
+    }
+}
+
+
+ /* contact-form -------------------------------------- */

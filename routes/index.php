@@ -20,6 +20,7 @@ function get404() {
 
 $uri = $_SERVER['REQUEST_URI'];
 $uri = filter_var($uri, FILTER_SANITIZE_URL);
+$uri = strtolower($uri);
 $uri = str_replace($root, "", $uri);
 $uri = trim($uri, "/");
 $uri = urldecode($uri);

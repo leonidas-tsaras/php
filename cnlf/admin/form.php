@@ -7,5 +7,5 @@
 	</form>
 	<!-- <p>Για να εμφανίσετε τη φόρμα newsletter σε ένα έγγραφο, κάντε copy-paste την παρακάτω εντολή.</p> -->
 	<p>To insert the newsletter form in a post type, copy-paste the code below.</p>
-	<?php echo "<b>[" . App::SHORTCODE . "]</b>" ?>
+	<?php echo "<b>[" . CNLF::SHORTCODE . "]</b>" ?>
 </div>

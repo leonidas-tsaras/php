@@ -18,7 +18,7 @@
     ?>
     <form method = 'POST' action = "<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>">
         <input type = 'email' value = '' name = 'email' placeholder = 'e-mail'>
-        <?php wp_nonce_field(App::NONCE_ACTION, App::NONCE_FIELD_NAME); ?>
+        <?php wp_nonce_field(CNLF::NONCE_ACTION, CNLF::NONCE_FIELD_NAME); ?>
         <input type = 'submit'>
     </form>
 </div>
