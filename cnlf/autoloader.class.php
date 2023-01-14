@@ -26,7 +26,7 @@ class CNLF_Autoloader {
                 return;
             }
         }
-    });
+    }
 }
 
 CNLF_Autoloader::_instance();

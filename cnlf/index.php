@@ -24,7 +24,7 @@ if (!class_exists('CNLF_Autoloader') ) {
 }
 
 // create App class to store app variables
-if (!class_exists('App') ) {
+if (!class_exists('CNLF') ) {
     class CNLF {
         const SHORTCODE = 'cool-newsletter-form'; // holds shortcode name
         const NONCE_ACTION = 'cnlf_action';
