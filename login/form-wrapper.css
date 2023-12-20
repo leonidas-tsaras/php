@@ -1,0 +1,78 @@
+
+* {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+:root {
+    --primary-color: rgb(5, 5, 156);
+    --primary-light: rgb(173, 215, 230);
+    --back-color: white;
+}
+body {
+    background-color: var(--primary-light);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+
+}
+
+div#form-wrapper {
+    background-color: var(--back-color);
+    width: 500px;
+    margin: auto;
+    margin-top: 10%;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: gray 5px 5px 10px;
+}
+
+div#form-wrapper h3 {
+    color: var(--primary-color);
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+div#form-wrapper p {
+    color: gray;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+div#form-wrapper form input {
+    padding: 8px;
+    background-color: lightgrey;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+div#form-wrapper form input[type="submit"] {
+    padding: 10px;
+    background-color: var(--primary-color);
+    color:var(--back-color);
+    font-weight: bold;
+    width: 100%;
+    margin-top: 25px;
+}
+
+div#form-wrapper p.error {
+    color: red;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 4px;
+    border: solid thin red;
+}
+
+div#form-wrapper p.success {
+    color: green;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 4px;
+    border: solid thin green;
+}        

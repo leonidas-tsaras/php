@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="form-wrapper.css">
+
+    <script>
+        function validateLoginForm(event) {
+            //block form action
+            event.preventDefault();
+
+            //read values
+            let email = document.querySelector("div#form-wrapper > form > input[type='email']").value;
+
+            //validation
+            const mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            if(!email.match(mailformat)) {
+                let p = document.querySelector("div#form-wrapper > p");
+                p.className = "error";
+                p.textContent = "oops, Συμπληρώστε ένα έγκυρο e-mail";
+                return;
+            }
+
+            let password = document.querySelector("div#form-wrapper > form > input[type='password']").value;
+            if(password.length < 6) {
+                let p = document.querySelector("div#form-wrapper > p");
+                p.className = "error";
+                p.textContent = "oops, Συμπληρώστε ένα έγκυρο password";
+            }
+
+            sendDataToServer(email, password);
+        }
+
+        function sendDataToServer(email, password) {
+
+            const xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    var response = xhttp.responseText;
+
+                    response = JSON.parse(response);
+                    let p = document.querySelector("div#form-wrapper > p");
+                    if(response.result === "ok") {
+                        document.location.href = "welcome.php";
+                    } else {
+                        p.className = "error";
+                        p.textContent = response.result;
+                    }
+                }
+            };
+            xhttp.open("POST", "login-ajax.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("email=" + email + "&password=" + password);
+        }
+    </script>
+</head>
+<body>
+    <div id = "form-wrapper">
+        <h3>Login</h3>
+        <form onsubmit = "validateLoginForm(event)">
+            <input type = "email" value = "" placeholder = "e-mail">
+            <input type = "password" value = "" placeholder = "password">
+            <input type = "submit" value = "Σύνδεση">
+        </form>
+        <p></p>
+    </div>
+</body>
+</html>

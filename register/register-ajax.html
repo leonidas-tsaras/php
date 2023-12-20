@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="form-wrapper.css">
+
+    <script>
+        function validateRegisterForm(event) {
+            //block form action
+            event.preventDefault();
+
+            //select form
+            let form = event.target;
+
+            //select p for messages
+            let p = document.querySelector("div#form-wrapper > p");
+
+            //check first name
+            let fname = form.querySelector("input[name='fname']").value;
+            if(fname === "") {
+                p.className = "error";
+                p.textContent = "Please fill out a valid first name";
+                return;
+            }
+
+            //check last name
+            let lname = form.querySelector("input[name='lname']").value;
+            if(lname === "") {
+                p.className = "error";
+                p.textContent = "Please fill out a valid last name";
+                return;
+            }
+            
+
+            //check email
+            let email = form.querySelector("input[type='email']").value;
+            //validate email
+            const mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            if(!email.match(mailformat)) {
+                p.className = "error";
+                p.textContent = "Please fill out a valid e-mail";
+                return;
+            }
+
+            //check phone
+            let phone = form.querySelector("input[name='phone']").value;
+            if(phone.length < 10) {
+                p.className = "error";
+                p.textContent = "Please fill out a valid phone number";
+                return;
+            }
+
+            const data = {fname:fname, lname:lname, email:email, phone:phone};
+
+            sendDataToServer(data);
+        }
+
+        function sendDataToServer(data) {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    var response = xhttp.responseText;
+                    response = JSON.parse(response);
+                    let p = document.querySelector("div#form-wrapper > p");
+                    if(response.result === "ok") {
+                        document.querySelector("div#form-wrapper > form").reset();
+                        document.querySelector("div#form-wrapper > form > input[type='email']").value = "";
+                        p.className = "success";
+                        p.innerHTML = "Thanks for registering<br>Check your e-mail for confirmation";
+                    } else {
+                        p.className = "error";
+                        p.textContent = response.result;
+                    }
+                }
+            };
+            xhttp.open("POST", "register-ajax.php", true);
+            xhttp.setRequestHeader('Content-Type', 'application/json');
+            xhttp.send(JSON.stringify(data)); 
+            //xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            //xhttp.send("email=" + email);
+        }
+    </script>
+</head>
+<body>
+    <div id = "form-wrapper">
+        <h3>Registration Form</h3>
+        <form onsubmit = "validateRegisterForm(event)">
+            <input type = "text" value = "" placeholder = "First name" name = "fname" required>
+            <input type = "text" value = "" placeholder = "Last name" name = "lname" required>
+            <input type = "email" value = "" placeholder = "E-mail" name = "email" required>
+            <input type = "tel" value = "" placeholder = "Phone" name = "phone" required>
+            <input type = "submit" value = "Register">
+        </form>
+        <p></p>
+    </div>
+</body>
+</html>

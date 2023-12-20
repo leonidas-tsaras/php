@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="form-wrapper.css">
+
+    <script>
+        function validateNewsletterForm(event) {
+            //block form action
+            event.preventDefault();
+
+            //read values
+            let email = document.querySelector("div#form-wrapper > form > input[type='email']").value;
+
+            //validation
+            const mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            if(!email.match(mailformat)) {
+                let p = document.querySelector("div#form-wrapper > p");
+                p.className = "error";
+                p.textContent = "oops, Συμπληρώστε ένα έγκυρο e-mail";
+                return;
+            }
+
+            sendDataToServer(email);
+        }
+
+        async function sendDataToServer(email) {
+            await fetch('letter-async.php', {
+                method: 'POST',
+                body: JSON.stringify({email: email}),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            })
+            .then((json) => json.json())
+            .then((response) => {
+                let p = document.querySelector("div#form-wrapper > p");
+                if(response.result === "ok") {
+                    document.querySelector("div#form-wrapper > form > input[type='email']").value = "";
+                    p.className = "success";
+                    p.textContent = "Ευχαριστούμε για την εγγραφή";
+                } else {
+                    p.className = "error";
+                    p.innerHTML = "oops, προέκυψε λάθος,<br>παρακαλώ προσπαθήστε πάλι";
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id = "form-wrapper">
+        <h3>Newsletter</h3>
+        <form onsubmit = "validateNewsletterForm(event)">
+            <input type = "email" value = "" placeholder = "e-mail">
+            <input type = "submit" value = "Εγγραφή">
+        </form>
+        <p></p>
+    </div>
+</body>
+</html>
