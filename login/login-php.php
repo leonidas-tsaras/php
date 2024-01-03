@@ -85,16 +85,16 @@ if($method === "POST") {
       // set the PDO error mode to exception
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //select from db
-    $sql = "SELECT `email`, `password` FROm `user` WHERE `email` = '$email' AND `password` = '$password'";
+    $sql = "SELECT `email`, `password`, `user_id` FROM `user` WHERE `email` = '$email' AND `password` = '$password'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $result = $stmt->fetchAll();
-
     if(count($result) > 0) {
         //set user in session
         //session_start();
         $_SESSION['visitor'] = session_id();
+        $_SESSION['user_id'] = $result[0]['user_id'];
         header("Location: ./welcome.php");
         die();
     } else {
